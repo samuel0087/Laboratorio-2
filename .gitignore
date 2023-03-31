@@ -1,0 +1,27 @@
+# Created by https://www.toptal.com/developers/gitignore/api/codeblocks,executable
+# Edit at https://www.toptal.com/developers/gitignore?templates=codeblocks,executable
+
+### CodeBlocks ###
+# specific to CodeBlocks IDE
+*.layout
+*.depend
+# generated directories
+bin/
+obj/
+
+### Executable ###
+*.app
+*.bat
+*.cgi
+*.com
+*.exe
+*.gadget
+*.jar
+*.pif
+*.vb
+*.wsf
+*.o
+*.pdf
+
+.pdf
+# End of https:
