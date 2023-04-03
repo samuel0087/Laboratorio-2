@@ -5,6 +5,7 @@ class Bidon {
 private:
 	std::string _sabor;
 	float _capacidad;
+	int _ventas;
 
 public:
 	Bidon();	//Constructor
@@ -15,7 +16,9 @@ public:
 	std::string  getSabor();
 	float getCapacidad();
 
-	void cargaVaso(float);
+	bool cargaVaso(float);
+
+	int getVentas();
 
 };
 

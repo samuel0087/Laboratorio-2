@@ -4,6 +4,7 @@
 Bidon::Bidon() {
 	_sabor = "Sin sabor";
 	_capacidad = 0.0f;
+	_ventas = 0;
 }
 
 void Bidon::setSabor(std::string sabor) {
@@ -22,8 +23,15 @@ float Bidon::getCapacidad() {
 	return _capacidad;
 }
 
-void Bidon::cargaVaso(float vaso) {
+bool Bidon::cargaVaso(float vaso) {
 	if (vaso <= _capacidad) {
 		_capacidad -= vaso;
+		_ventas++;
+		return true;
 	}
+	return false;
+}
+
+int Bidon::getVentas() {
+	return _ventas;
 }
