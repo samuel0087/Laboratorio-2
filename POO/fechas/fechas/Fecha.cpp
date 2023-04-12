@@ -29,8 +29,9 @@ Fecha::Fecha() {
 
 //setters
 void Fecha::setDia(int numD) {
-		_dia = numD;
-
+   if(numD >= 1 && numD <= cantidadDiaMes(_mes) {
+      _dia = numD;
+   }
 }
 
 void Fecha::setMes(int numM) {
