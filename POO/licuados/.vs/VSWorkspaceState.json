@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\licuados"
   ],
-  "SelectedNode": "\\licuados.sln",
+  "SelectedNode": "\\licuados\\licuados.cpp",
   "PreviewInSolutionExplorer": false
 }
