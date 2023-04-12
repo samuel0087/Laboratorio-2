@@ -1,5 +1,6 @@
 #include "Fecha.h"
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -8,10 +9,10 @@ using namespace std;
 //constructores
 Fecha::Fecha(int dia = 1, int mes = 1, int anio = 2023) {
 	int canDias = cantidadDiaMes(mes, anio);
-	if (anio > 0 && mes >= 1 && mes <= 12 && dia >= 1 && dia <= canDias) {
-		setAnio(anio);
-		setMes(mes);
-		setDia(dia);
+	if ((anio > 0) && (mes >= 1 && mes <= 12) && (dia >= 1 && dia <= canDias)) {
+		this->setAnio(anio);
+		this->setMes(mes);
+		this->setDia(dia);
 	}
 	else {
 		setAnio(2023);
@@ -28,12 +29,8 @@ Fecha::Fecha() {
 
 //setters
 void Fecha::setDia(int numD) {
-	if (numD >= 1 && numD <= cantidadDiaMes(_mes, _anio)) {
 		_dia = numD;
-	}
-	else {
-		cout << "ingrese un dia valido." << endl;
-	}
+
 }
 
 void Fecha::setMes(int numM) {
@@ -63,7 +60,7 @@ int Fecha::getAnio() {
 
 //Funciones de clase
 bool Fecha::anioBisiesto(int numAnio) {
-	if (numAnio % 4 == 0 && numAnio % 100 != 0 && numAnio % 400 == 0) {
+	if ((numAnio % 4 == 0 && numAnio % 100 != 0) || numAnio%400 == 0) {
 		return true;
 	}
 	return false;
@@ -71,6 +68,7 @@ bool Fecha::anioBisiesto(int numAnio) {
 
 int Fecha::cantidadDiaMes(int numMes, int numAnio) {
 	int canDias = 0;
+
 
 	switch (numMes) {
 		case 1:
@@ -99,7 +97,6 @@ int Fecha::cantidadDiaMes(int numMes, int numAnio) {
 			canDias = 30;
 			break;
 	}
-	cout << "Can ->" << numMes << endl << " -> a " << numAnio ;
 	return canDias;
 }
 

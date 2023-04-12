@@ -7,11 +7,17 @@ using namespace std;
 #include "Fecha.h";
 int main()
 {
-    Fecha fech;
+    Fecha fech, fech2(29, 2, 2024);
 
     cout << "Dia: " << fech.getDia() << endl;
     cout << "Mes: " << fech.getMes() << endl;
     cout << "Anio: " << fech.getAnio() << endl;
+
+    cout << "-----------------------" << endl;
+
+    cout << "Dia: " << fech2.getDia() << endl;
+    cout << "Mes: " << fech2.getMes() << endl;
+    cout << "Anio: " << fech2.getAnio() << endl;
     
 
     cout << "Hello World!\n";
