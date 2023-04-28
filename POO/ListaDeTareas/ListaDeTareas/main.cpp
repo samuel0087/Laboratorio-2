@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     ListaDeTareas tareas;
-    Tarea tarea;
+    Tarea tarea("Hola mundo soy un stringaaaaa",1, Fecha(), true);
     int opc, numTarea;
 
     do {

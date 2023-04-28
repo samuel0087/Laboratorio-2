@@ -1,24 +1,37 @@
 #pragma once
 #include  <iostream>
+#include <cstring>
 #include "Tarea.h"
 
 Tarea::Tarea() {
-	_descripcion = "";
+	strcpy_s(_descripcion, "");
 	_dificultad = 0;
 	_fechaLimite = Fecha();
 	_estado = false;
 }
 
 Tarea::Tarea(std::string des, int dif, Fecha fech, bool status) {
-	_descripcion = des;
-	_dificultad = dif;
-	_fechaLimite = fech;
-	_estado = status;
+	if (des.length() <= 30) {
+		strcpy_s(_descripcion, des.c_str());
+		_dificultad = dif;
+		_fechaLimite = fech;
+		_estado = status;
+	}
+	else {
+		strcpy_s(_descripcion, "");
+		_dificultad = 0;
+		_fechaLimite = Fecha();
+		_estado = false;
+	}
 }
 
 //setters
-void Tarea::setDescripcion(std::string des) {
-	_descripcion = des;
+bool Tarea::setDescripcion(std::string des) {
+	if (des.length() <= 30) {
+		strcpy_s(_descripcion, des.c_str());
+		return true;
+	}
+	return false;
 }
 
 void Tarea::setDificultad(int dif) {

@@ -1,15 +1,20 @@
 #include "funciones.h"
 
 Tarea cargarTarea() {
+    Tarea t;
     int dia, mes, anio, dificultad;
     string descripcion;
 
-    cout << "Ingrese Descripcion de la tarea: ";
-    cin.ignore();
-    getline(cin, descripcion);
+    do {
+        cout << "Ingrese Descripcion de la tarea: ";
+        cin.ignore();
+        getline(cin, descripcion);
+        
+    } while (!t.setDescripcion(descripcion));
 
     cout << "Ingrese dificultad ( 1 - baja, 2 - media y 3 - alta) ";
     cin >> dificultad;
+    t.setDificultad(dificultad);
 
     cout << "Fecha limite: " << endl;
     cout << "Dia: ";
@@ -20,7 +25,10 @@ Tarea cargarTarea() {
 
     cout << "Anio: ";
     cin >> anio;
+    t.setFechaLimite(Fecha(dia, mes, anio));
 
-    return Tarea(descripcion, dificultad, Fecha(dia, mes, anio), false);
+    t.setEstado(false);
+
+    return t;
 
 }
