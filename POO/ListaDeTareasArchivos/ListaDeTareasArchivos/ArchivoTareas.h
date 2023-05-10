@@ -10,14 +10,12 @@ class ArchivoTareas
 
 	public:
 		ArchivoTareas(std::string nombre);
+
 		void setNombreArchivo(std::string nombre);
-
 		std::string getNombreArchivo();
-		int getCantidadRegistros();
 
-		Tarea leer(int id);
 		bool guardarTarea(Tarea tarea);
 		bool listarTarea(bool deadline);
-		int buscarTarea(int codTarea);
+		Tarea buscarTarea(int codTarea);
 };
 

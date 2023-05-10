@@ -17,38 +17,9 @@ std::string ArchivoTareas::getNombreArchivo() {
 	return nombre;
 }
 
-int ArchivoTareas::getCantidadRegistros() {
-	FILE* pTarea;
-	pTarea = fopen(_nombreArchivo, "rb");
-
-	if (pTarea == NULL) {
-		return 0;
-	}
-
-	fseek(pTarea, 0, SEEK_END);
-	int byte = ftell(pTarea);
-	return byte / sizeof(Tarea);
-}
-
-Tarea ArchivoTareas::leer(int numRegistro) {
-	Tarea aux;
-	FILE* pTarea;
-	pTarea = fopen(_nombreArchivo, "rb");
-
-	if (pTarea == NULL) {
-		return aux;
-	}
-
-	fseek(pTarea, numRegistro * sizeof(Tarea), SEEK_SET);
-	fread(&aux, sizeof(Tarea), 1, pTarea);
-	fclose(pTarea);
-
-	return aux;
-}
-
-
 bool ArchivoTareas::guardarTarea(Tarea tarea) {
 	FILE* pTarea;
+
 	pTarea = fopen(_nombreArchivo, "ab");
 
 	if (pTarea == NULL) {
@@ -56,56 +27,75 @@ bool ArchivoTareas::guardarTarea(Tarea tarea) {
 	}
 
 	fwrite(&tarea, sizeof(Tarea), 1, pTarea);
+
 	fclose(pTarea);
+
 	return true;
 }
 
 bool ArchivoTareas::listarTarea(bool deadline = false) {
-	Tarea aux;
+	FILE* pTarea;
+	Tarea tarea;
 	Fecha fechActual = fechaActual();
-	int cantRegistros = this->getCantidadRegistros();
 
+	pTarea = fopen(_nombreArchivo, "rb");
+
+	if (pTarea == NULL) {
+		return false;
+	}
 	std::cout << std::left;
 	std::cout << std::setw(4) << "id ";
 	std::cout << std::setw(30) << "Descripcion";
 	std::cout << std::setw(15) << "Dificultad";
 	std::cout << std::setw(15) << "Fecha Limite";
 	std::cout << std::setw(15) << "Estado";
-
 	if(deadline) {
 		std::cout << std::setw(10) << "Dias de expiracion : ";
 	}
+
 	std::cout << std::endl;
 
-	for (int i = 0; i < cantRegistros; i++) {
-		aux = this->leer(i);
+	while (fread(&tarea, sizeof(Tarea), 1, pTarea) != 0) {
 
 		if (deadline) {
-			if (!aux.getEstado()) {				
-				aux.mostrar();
-				std::cout << std::setw(15) << diferenciaDias(fechActual, aux.getFechaLimite());
+			if (!tarea.getEstado()) {				
+
+				tarea.mostrar();
+
+				std::cout << std::setw(15) << diferenciaDias(fechActual, tarea.getFechaLimite());
 			}
 		}
 		else {
-			aux.mostrar();
+			tarea.mostrar();
 		}
 
 		std::cout << std::endl;
+
 	}
+
+	fclose(pTarea);
 
 	return true;
 }
 
-int ArchivoTareas::buscarTarea(int codTarea) {
-	Tarea aux;
-	int i, cantRegistros = this->getCantidadRegistros();
+Tarea ArchivoTareas::buscarTarea(int codTarea) {
+	FILE* pTareas;
+	Tarea tarea;
 
-	for (i = 0; i < cantRegistros; i++) {
-		aux = this->leer(i);
-		if (aux.getId() == codTarea) {
-			return i;
+	pTareas = fopen(_nombreArchivo, "rb");
+
+	if (pTareas == NULL) {
+		return tarea;
+	}
+
+	while (fread(&tarea, sizeof(Tarea), 1, pTareas) != 0) {
+		if (tarea.getId() == codTarea) {
+			fclose(pTareas);
+			return tarea;
 		}
 	}
 
-	return -1;
+	fclose(pTareas);
+
+	return tarea;
 }

@@ -7,7 +7,7 @@ int main()
 {
     ArchivoTareas aTareas("tarea.dat");
     Tarea tarea;
-    int opc, numTarea, pos;
+    int opc, numTarea;
     Fecha fechaAtual = fechaActual();
 
     do {
@@ -20,7 +20,6 @@ int main()
         cout << "2 - Listado de tareas" << endl;
         cout << "3 - Buscar tarea" << endl;
         cout << "4 - Vencimiento de tareas" << endl;
-        cout << "5 - cantidad de registros" << endl;
         cout << "0 - Salir" << endl;
         cin >> opc;
         system("cls");
@@ -36,7 +35,9 @@ int main()
                 }
                 else {
                     cout << "Error al registrar " << endl;
-                }   
+                }
+
+                
                 break;
 
             case 2:
@@ -46,7 +47,8 @@ int main()
                 
                 if (!aTareas.listarTarea(false)) {
                     cout << "Error al registrar " << endl;
-                }         
+                }
+              
                 break;
 
             case 3:
@@ -59,8 +61,7 @@ int main()
                     cin >> numTarea;
 
                     cout << "Numero de tarea: " << numTarea << endl;
-                    pos = aTareas.buscarTarea(numTarea);
-                    tarea = aTareas.leer(pos);
+                    tarea = aTareas.buscarTarea(numTarea);
 
                     if (tarea.getId() == numTarea) {
                         tarea.mostrar();
@@ -86,6 +87,7 @@ int main()
                 if (opc == 1) {
                     
                 }
+
                 break;
 
             case 4:
@@ -96,10 +98,7 @@ int main()
                 if (!aTareas.listarTarea(true)) {
                     cout << "Error al registrar " << endl;
                 }
-                break;
-
-            case 5:
-                cout << "Cantidad de registros: " << aTareas.getCantidadRegistros() << endl;
+                
                 break;
 
             case 0:
