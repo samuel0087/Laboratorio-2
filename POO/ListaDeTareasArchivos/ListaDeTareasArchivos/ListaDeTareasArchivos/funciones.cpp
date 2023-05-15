@@ -1,6 +1,6 @@
 #include "funciones.h"
 
-bool cargarTarea(Tarea t, ArchivoTareas at) {
+/*bool cargarTarea(Tarea t, ArchivoTareas at) {
 
     int dia, mes, anio, dificultad, id, cantTag;
     string descripcion;
@@ -78,6 +78,7 @@ Etiqueta cargarEtiqueta(int canTags) {
 
     return tags;
 }
+*/
 
 Fecha fechaActual() {
     time_t timeActual;

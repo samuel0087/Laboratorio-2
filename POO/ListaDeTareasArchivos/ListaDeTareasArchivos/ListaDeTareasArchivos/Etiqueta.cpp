@@ -1,5 +1,4 @@
 #pragma once
-#define _CRT_SECURE_NO_DEPRECATE
 #include "Etiqueta.h"
 
 
@@ -40,5 +39,27 @@ void Etiqueta::mostrar() {
 
 	for (int i = 0; i < _cantidad; i++) {
 		std::cout << _nombre[i] << std::endl;
+	}
+}
+
+void Etiqueta::cargar(int cantTags) {
+	Etiqueta tags;
+	bool status;
+
+	cin.ignore();
+
+	for (int i = 0; i < cantTags; i++) {
+		string tag;
+
+		do {
+			cout << "Ingrese etiqueta num " << i + 1 << ": ";
+			getline(cin, tag);
+			status = tags.setNombre(tag);
+
+			if (!status) {
+				cout << "tag no valida, prueba otra vez." << endl;
+			}
+
+		} while (!status);
 	}
 }

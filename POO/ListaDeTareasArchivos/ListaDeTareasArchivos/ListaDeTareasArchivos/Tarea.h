@@ -32,7 +32,7 @@ class Tarea
 		std::string getDificultad();
 		Fecha getFechaLimite();
 		Etiqueta getTags();
-		bool getEstado();
+		std::string getEstado();
 
 		//de clase
 		void mostrar();

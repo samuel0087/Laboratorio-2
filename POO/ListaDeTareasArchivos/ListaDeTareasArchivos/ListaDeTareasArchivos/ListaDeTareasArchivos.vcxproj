@@ -133,6 +133,9 @@
     <ClCompile Include="funciones.cpp" />
     <ClCompile Include="ListaDeTareasArchivos.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ManagerTarea.cpp" />
+    <ClCompile Include="MenuTarea.cpp" />
+    <ClCompile Include="Programa.cpp" />
     <ClCompile Include="Tarea.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +143,9 @@
     <ClInclude Include="Etiqueta.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="funciones.h" />
+    <ClInclude Include="ManagerTarea.h" />
+    <ClInclude Include="MenuTarea.h" />
+    <ClInclude Include="Programa.h" />
     <ClInclude Include="Tarea.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,6 @@
 #pragma once
+#define _CRT_SECURE_NO_DEPRECATE
+#include <string>
 #include <cstring>
 #include <iostream>
 using namespace std;
@@ -16,5 +18,6 @@ class Etiqueta{
 		std::string* getNombre();
 
 		void mostrar();
+		void cargar(int canTags);
 };
 

@@ -4,7 +4,11 @@
 #include "ArchivoTareas.h"
 #include "funciones.h"
 
-ArchivoTareas::ArchivoTareas(std::string nombre = "") {
+ArchivoTareas::ArchivoTareas() {
+	strcpy(_nombreArchivo, "tareas.dat");
+}
+
+ArchivoTareas::ArchivoTareas(std::string nombre) {
 	strcpy(_nombreArchivo, nombre.c_str());
 }
 
@@ -60,36 +64,37 @@ bool ArchivoTareas::guardarTarea(Tarea tarea) {
 	return true;
 }
 
+bool ArchivoTareas::guardarTarea(Tarea tarea, int posRegistro) {
+	FILE* pTarea;
+	pTarea = fopen(_nombreArchivo, "rb+");
+
+	if (pTarea == NULL) {
+		return false;
+	}
+
+	fseek(pTarea, posRegistro * sizeof(Tarea), SEEK_SET);
+	fwrite(&tarea, sizeof(Tarea), 1, pTarea);
+	fclose(pTarea);
+	return true;
+}
+
 bool ArchivoTareas::listarTarea(bool deadline = false) {
 	Tarea aux;
 	Fecha fechActual = fechaActual();
 	int cantRegistros = this->getCantidadRegistros();
 
-	std::cout << std::left;
-	std::cout << std::setw(4) << "id ";
-	std::cout << std::setw(30) << "Descripcion";
-	std::cout << std::setw(15) << "Dificultad";
-	std::cout << std::setw(15) << "Fecha Limite";
-	std::cout << std::setw(15) << "Estado";
-
-	if(deadline) {
-		std::cout << std::setw(10) << "Dias de expiracion : ";
-	}
-	std::cout << std::endl;
-
 	for (int i = 0; i < cantRegistros; i++) {
 		aux = this->leer(i);
 
 		if (deadline) {
-			if (!aux.getEstado()) {				
+			if (aux.getEstado() == "Pendiente") {
 				aux.mostrar();
-				std::cout << std::setw(15) << diferenciaDias(fechActual, aux.getFechaLimite());
+				std::cout << "Dias de expiracion : " << diferenciaDias(fechActual, aux.getFechaLimite()) << std::endl;
 			}
 		}
 		else {
 			aux.mostrar();
 		}
-
 		std::cout << std::endl;
 	}
 

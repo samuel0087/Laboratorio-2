@@ -1,10 +1,15 @@
 #pragma once
 #include <iostream>
+#include "Programa.h"
 #include "funciones.h"
 using namespace std;
 
 int main()
 {
+    Programa prog;
+        prog.ejecutar();
+
+    /*
     ArchivoTareas aTareas("tarea.dat");
     Tarea tarea;
     int opc, numTarea, pos;
@@ -69,23 +74,19 @@ int main()
                     else {
                         cout << "Ingrese un codigo de tarea valido por favor." << endl;
                     }
-
-
                 } while (tarea.getId() != numTarea);           
                 
                 cout << endl;
-                cout << "-------------------------------" << endl;
-                cout << "¿Desea cambiar el estado de la tarea?" << endl;
-                cout << "           1 - si                    " << endl;
-                cout << "           2 - No          " << endl;
-                cout << "           0 - Salir          " << endl;
-                cout << "-------------------------------" << endl;
-                
+                cout << "-------------------------------------------" << endl;
+                cout << "¿Desea cambiar el estado de la tarea? (1 - si, 2 - no): " << endl;
+                cout << "-------------------------------------------" << endl;
                 cin >> opc;
 
                 if (opc == 1) {
-                    
+                    tarea.setEstado(opc);
+                    aTareas.guardarTarea(tarea, pos);
                 }
+
                 break;
 
             case 4:
@@ -115,7 +116,7 @@ int main()
 
 
     } while (opc != 0);
-
+    */
     return 0;
 }
 

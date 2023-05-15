@@ -9,14 +9,17 @@ class ArchivoTareas
 		char  _nombreArchivo[50];
 
 	public:
+		ArchivoTareas();
 		ArchivoTareas(std::string nombre);
-		void setNombreArchivo(std::string nombre);
 
+
+		void setNombreArchivo(std::string nombre);
 		std::string getNombreArchivo();
 		int getCantidadRegistros();
 
 		Tarea leer(int id);
 		bool guardarTarea(Tarea tarea);
+		bool guardarTarea(Tarea tarea, int posRegistro);
 		bool listarTarea(bool deadline);
 		int buscarTarea(int codTarea);
 };

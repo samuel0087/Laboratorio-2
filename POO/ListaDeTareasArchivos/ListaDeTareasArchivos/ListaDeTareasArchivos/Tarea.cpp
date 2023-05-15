@@ -97,21 +97,20 @@ Etiqueta Tarea::getTags() {
 	return _tags;
 }
 
-bool Tarea::getEstado() {
-	return _estado;
+std::string Tarea::getEstado() {
+	std::string estado = "Pendiente";
+	if (_estado) {
+		estado = "Hecho";
+	}
+
+	return estado;
 }
 
 void Tarea::mostrar() {
-	std::cout << std::left;
-	std::cout << std::setw(4) << getId();
-	std::cout << std::setw(30)  << getDescripcion();
-	std::cout << std::setw(15) << getDificultad();
-	std::cout << std::setw(15) << getFechaLimite().toString();
+	std::cout << "Id          :" <<getId() << std::endl;
+	std::cout << "Descripcion :" <<getDescripcion() << std::endl;
+	std::cout << "Dificultad  :" <<getDificultad() << std::endl;
+	std::cout << "Fecha limite:" <<getFechaLimite().toString() << std::endl;
+	std::cout << "Estado      :" << getEstado() << endl;
 
-	if (getEstado()) {
-		std::cout << std::setw(15) << "Hecho";
-	} 
-	else {
-		std::cout << std::setw(15) << "Pendiente";
-	}
 }
