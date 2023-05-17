@@ -8,9 +8,14 @@ void ManagerTarea::cargar() {
 	string descripcion;
 	Etiqueta tags;
 	Tarea t;
-
-	cout << "Ingrese id: ";
-	cin >> id;
+	/*
+	if (existeId(id)) {
+		cout << "Id ya fue usado" << endl;
+		return;
+	}
+	*/
+	id = generarId();
+	cout << "Tarea #" << id << endl;
 
 	do {
 		cout << "Ingrese Descripcion de la tarea: ";
@@ -107,4 +112,13 @@ void ManagerTarea::listar(Tarea tarea) {
 	cout << "Dificultad  :" << tarea.getDificultad() << endl;
 	cout << "Fecha limite:" << tarea.getFechaLimite().toString() << endl;
 	cout << "Estado      :" << tarea.getEstado() << endl;
+}
+
+
+bool ManagerTarea::existeId(int id) {
+	return _archivoTareas.buscarTarea(id) >= 0;
+}
+
+int ManagerTarea::generarId() {
+	return _archivoTareas.getCantidadRegistros() + 1;
 }

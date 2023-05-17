@@ -13,5 +13,7 @@ public:
 
 private:
 	ArchivoTareas _archivoTareas = ArchivoTareas("tareas.dat");
+	bool existeId(int id);
+	int generarId();
 };
 
