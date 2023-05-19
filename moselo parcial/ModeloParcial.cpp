@@ -40,6 +40,11 @@ void ModeloParcial::Punto2() {
 	int* vContMultas = new int[cantRegAgentes]();
 	float* vAcumMultas = new float[cantRegAgentes]();
 
+	if (vContMultas == nullptr || vAcumMultas == nullptr) {
+		cout << "Error en el punto 3" << endl;
+		return;
+	}
+
 	for (int i = 0; i < cantRegAgentes; i++) {
 		Agente reg = _agenteArchivo.leer(i);
 		int id = reg.getIdAgente();
@@ -88,6 +93,38 @@ void ModeloParcial::Punto3() {
 		cout << "Cantidad de multas por infracciones #" << i + 1 << " :" << cantInfracciones[i] << endl;
 	}
 
+}
+
+void ModeloParcial::Punto4() {
+	int cantRegistros = _multaArchivo.getCantidadRegistros();
+	Multa* multas = new Multa[cantRegistros];
+
+	if (multas == nullptr) {
+		cout << "Error en el punto 4" << endl;
+		return;
+	}
+
+	_multaArchivo.leer(multas, cantRegistros);
+
+	for (int i = 0; i < cantRegistros; i++) {
+		if (multas[i].getFechaMulta().getAnio() == 2022 && multas[i].getPagada() && !multas[i].getEliminado()) {
+			if (_multasPagadas2022.buscar(multas[i].getIDMulta()) < 0) {
+				_multasPagadas2022.guardar(multas[i]);
+			}
+		}
+	}
+	delete[]multas;
+
+	cout << "----------------------------------------------------" << endl;
+	cout << "Punto 4" << endl;
+	cout << "----------------------------------------------------" << endl;
+
+	cantRegistros = _multasPagadas2022.getCantidadRegistros();
+
+	for (int i = 0; i < cantRegistros; i++) {
+		Multa reg = _multasPagadas2022.leer(i);
+		listarPunto4(reg);
+	}
 }
 
 int ModeloParcial::buscarNulos(int* vec, int tam) {
@@ -140,5 +177,25 @@ void ModeloParcial::listarPunto2(Agente reg, int cant, float monto) {
 	cout << setw(6) << cant;
 	cout << "$ ";
 	cout << setw(8) << monto * 1.0f << endl;
+}
+
+void ModeloParcial::listarPunto4(Multa reg) {
+	if (!reg.getEliminado()) {
+		cout << setw(8) << reg.getIDMulta();
+		cout << setw(8) << reg.getPatente();
+		cout << setw(12) << reg.getFechaMulta().toString();
+		cout << setw(8) << reg.getTipoInfraccion();
+		cout << setw(8) << reg.getMonto();
+		cout << setw(8) << reg.getIDLocalidad();
+
+		if (reg.getPagada()) {
+			cout << setw(8) << "pagada" << endl;
+		}
+		else {
+			cout << setw(8) << "Adeuda" << endl;
+		}
+	}
+	
+
 }
 

@@ -134,6 +134,7 @@
     <ClInclude Include="Multa.h" />
     <ClInclude Include="MultaArchivo.h" />
     <ClInclude Include="MultaManager.h" />
+    <ClInclude Include="ArchivoMultasPagadas2022.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agente.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Multa.cpp" />
     <ClCompile Include="MultaArchivo.cpp" />
     <ClCompile Include="MultaManager.cpp" />
+    <ClCompile Include="ArchivoMultasPagadas2022.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,6 +11,8 @@ int main(){
 	modParcial.Punto2();
 	cout << endl;
 	modParcial.Punto3();
+	cout << endl;
+	modParcial.Punto4();
   
   return 0;
 }
