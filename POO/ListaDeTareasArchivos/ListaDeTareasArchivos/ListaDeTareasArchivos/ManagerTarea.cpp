@@ -63,9 +63,14 @@ void ManagerTarea::listarTodo() {
 	cout << "-------------------------------" << endl;
 	cout << "        Lista de tareas        " << endl;
 	cout << "-------------------------------" << endl;
+	int cantRegistros = _archivoTareas.getCantidadRegistros();
 
-	if (!_archivoTareas.listarTarea(false)) {
-		cout << "Error al Listar tareas " << endl;
+	for (int i = 0; i < cantRegistros; i++) {
+		Tarea reg = _archivoTareas.leer(i);
+		if (!reg.getEliminado()) {
+			listar(reg);
+			cout << endl;
+		}
 	}
 }
 
@@ -100,6 +105,26 @@ void ManagerTarea::editar() {
 		cin >> nuevoEstado;
 		reg.setEstado(nuevoEstado);
 		_archivoTareas.guardarTarea(reg, posicion);
+	}
+	else {
+		cout << "No existe el registro con ID #" << id << endl;
+	}
+}
+
+void ManagerTarea::eliminar() {
+	Tarea reg;
+	int id;
+	cout << "Ingrese ID: ";
+	cin >> id;
+
+	int posicion = _archivoTareas.buscarTarea(id);
+	if (posicion >= 0) {
+		reg = _archivoTareas.leer(posicion);
+		listar(reg);
+		cout << endl;
+		reg.setEliminado(true);
+		_archivoTareas.guardarTarea(reg, posicion);
+		cout << "Registro #" << id << " eliminado correctamente" << endl;
 	}
 	else {
 		cout << "No existe el registro con ID #" << id << endl;

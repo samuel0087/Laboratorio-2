@@ -14,7 +14,7 @@ void MenuTarea::mostrar() {
 		cout << "2 - Listado de tareas" << endl;
 		cout << "3 - Buscar tarea" << endl;
 		cout << "4 - Editar estado de tarea" << endl;
-		cout << "5 - cantidad de registros" << endl;
+		cout << "5 - Eliminar registro" << endl;
 		cout << "0 - Salir" << endl;
 		cin >> opc;
 		system("cls");
@@ -31,6 +31,9 @@ void MenuTarea::mostrar() {
 			break;
 		case 4:
 			_managerTareas.editar();
+			break;
+		case 5:
+			_managerTareas.eliminar();
 			break;
 		case 0:
 			break;

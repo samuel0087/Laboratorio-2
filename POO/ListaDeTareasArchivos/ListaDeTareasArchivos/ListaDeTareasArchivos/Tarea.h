@@ -13,10 +13,11 @@ class Tarea
 		Fecha _fechaLimite;
 		Etiqueta _tags;
 		bool _estado;
+		bool _eliminado;
 
 	public:
 		Tarea();
-		Tarea(int id, std::string des, int dif, Fecha fech, bool status);
+		Tarea(int id, std::string des, int dif, Fecha fech, bool status, bool eliminado);
 
 		//setters
 		void setId(int id);
@@ -25,6 +26,7 @@ class Tarea
 		void setFechaLimite(Fecha fech);
 		void setTags(Etiqueta tags);
 		void setEstado(bool status);
+		void setEliminado(bool eliminado);
 
 		//getters
 		int getId();
@@ -33,6 +35,7 @@ class Tarea
 		Fecha getFechaLimite();
 		Etiqueta getTags();
 		std::string getEstado();
+		bool getEliminado();
 
 		//de clase
 		void mostrar();

@@ -10,15 +10,17 @@ Tarea::Tarea() {
 	_dificultad = 0;
 	_fechaLimite = Fecha();
 	_estado = false;
+	_eliminado = false;
 }
 
-Tarea::Tarea(int id, std::string des, int dif, Fecha fech, bool status) {
+Tarea::Tarea(int id, std::string des, int dif, Fecha fech, bool status = true, bool eliminado = false) {
 	if (des.length() <= 30) {
 		_idTarea = id;
 		strcpy_s(_descripcion, des.c_str());
 		_dificultad = dif;
 		_fechaLimite = fech;
 		_estado = status;
+		_eliminado = eliminado;
 	}
 	else {
 		_idTarea = 0;
@@ -26,6 +28,7 @@ Tarea::Tarea(int id, std::string des, int dif, Fecha fech, bool status) {
 		_dificultad = 0;
 		_fechaLimite = Fecha();
 		_estado = false;
+		_eliminado = false;
 	}
 }
 
@@ -56,6 +59,9 @@ void Tarea::setTags(Etiqueta tags) {
 
 void Tarea::setEstado(bool status) {
 	_estado = status;
+}
+void Tarea::setEliminado(bool eliminado) {
+	_eliminado = eliminado;
 }
 
 //getters
@@ -104,6 +110,10 @@ std::string Tarea::getEstado() {
 	}
 
 	return estado;
+}
+
+bool Tarea::getEliminado() {
+	return _eliminado;
 }
 
 void Tarea::mostrar() {
