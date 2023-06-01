@@ -41,7 +41,6 @@ int TarjetasArchivo::buscarDni(int dni){
     Tarjeta reg;
 
     if(archivoT == NULL){
-        reg.setNumeroTarjeta(-1);
         return -1;
     }
 
@@ -50,10 +49,11 @@ int TarjetasArchivo::buscarDni(int dni){
         reg = leer(i);
 
         if(reg.getDniUsuario() == dni){
+            fclose(archivoT);
             return i;
         }
     }
-
+    fclose(archivoT);
     return -2;
 }
 
@@ -62,7 +62,6 @@ int TarjetasArchivo::buscar(int numTarjeta){
     Tarjeta reg;
 
     if(archivoT == NULL){
-        reg.setNumeroTarjeta(-1);
         return -1;
     }
 
@@ -71,10 +70,11 @@ int TarjetasArchivo::buscar(int numTarjeta){
         reg = leer(i);
 
         if(reg.getNumeroTargeta() == numTarjeta){
+            fclose(archivoT);
             return i;
         }
     }
-
+    fclose(archivoT);
     return -2;
 }
 
@@ -101,7 +101,7 @@ void TarjetasArchivo::leer(Tarjeta* tarjetas, int cantidadRegistros){
         return;
     }
 
-    fread(&tarjetas, sizeof(Tarjeta), cantidadRegistros, archivoT);
+    fread(tarjetas, sizeof(Tarjeta), cantidadRegistros, archivoT);
     fclose(archivoT);
 
 }

@@ -18,8 +18,9 @@ void TarjetasManager::agregar(){
 
         valido = _archivoT.buscarDni(dni);
 
-        if(valido > 0){
-            cout << "Numero de DNI ya existe en el sistema: ";
+        if(valido >= 0){
+            cout << "Numero de DNI ya existe en el sistema " << endl;
+            system("pause");
             return;
         }
 
@@ -38,22 +39,93 @@ void TarjetasManager::agregar(){
     cout << "Anio: ";
     cin >> anio;
 
-    Tarjeta tarjeta(numTarjeta, Fecha(dia,mes,anio), dni, saldo, true);
+    cout << endl;
+
+    Tarjeta tarjeta(numTarjeta, Fecha(dia,mes,anio), dni, saldo, true);  
 
     if(_archivoT.guardar(tarjeta)){
+        cout << "-------------------------------" << endl;
         cout << "Se guardo tarjeta correctamente" << endl;
+        cout << "-------------------------------" << endl;
+        mostrar(tarjeta);
     }
     else{
         cout << "No se pudo guardar";
     }
+    system("pause");
 }
 
-int TarjetasManager::generarNumeroTarjeta(){
+void TarjetasManager::listarTodo() {
+    int cantRegistros = _archivoT.getCantidadRegistros();
+    Tarjeta* tarjetas = new Tarjeta[cantRegistros];
+
+    if (tarjetas == nullptr) {
+        return;
+    }
+
+    _archivoT.leer(tarjetas, cantRegistros);
+
+    
+
+    cout << "            Listado de tarjetas SUBE -> " << cantRegistros << endl;
+    cout << "--------------------------------------------------" << endl;
+
+    for (int i = 0; i < cantRegistros; i++) {
+        if (tarjetas[i].getEstado()) {
+            mostrar(tarjetas[i]);
+            cout << "----------------------------------------" << endl;
+        }
+    }
+
+    system("pause");
+}
+
+void TarjetasManager::mostrar(Tarjeta tarjeta) {
+    cout << "Numero de tarjeta : " << tarjeta.getNumeroTargeta() << endl;
+    cout << "Fecha de alta     : " << tarjeta.getFechaAlta().toString() << endl;
+    cout << "DNI de propietario: " << tarjeta.getDniUsuario() << endl;
+    cout << "Saldo actual      : " << tarjeta.getSaldo() << endl;
+}
+
+int TarjetasManager::generarNumeroTarjeta() {
     return (_archivoT.getCantidadRegistros() + 1);
 }
 
+void TarjetasManager::modificar() {
+    int dni;
+    float saldo;
+
+    cout << "Ingrese numero de DNI: ";
+    cin >> dni;
+
+    int pos = _archivoT.buscarDni(dni);
+    
+    if (pos < 0) {
+        cout << "No hay ningun elemento con ese DNI" << endl;
+        return;
+    }
+
+    Tarjeta tarjeta = _archivoT.leer(pos);
+
+    cout << "Ingrese monto a cargar: ";
+    cin >> saldo;
+
+    saldo += (float)tarjeta.getSaldo();
+    tarjeta.setSaldo(saldo);
+
+    if (_archivoT.guardar(tarjeta, pos)) {
+        cout << "-------------------------------" << endl;
+        cout << "Se guardo tarjeta correctamente" << endl;
+        cout << "-------------------------------" << endl;
+        mostrar(tarjeta);
+    }
+    else {
+        cout << "No se pudo guardar";
+    }
+    system("pause");
+}
+
 /*
-        void agregar();
         void modificar();
         void buscarPorNumeroTarjeta();
         void buscarPorDni();

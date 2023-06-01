@@ -26,8 +26,6 @@ void Menu::menuPrincipal(){
                 break;
         }
     }while(opc != 0);
-
-    system("pause");
 }
 
 void Menu::menuTarjetas(){
@@ -37,8 +35,9 @@ void Menu::menuTarjetas(){
         system("cls");
         cout << "--------TARJETAS------" << endl;
         cout << "1 - Agregar Sube" << endl;
-        cout << "2 - --------" << endl;
-        cout << "0 - Salir" << endl;
+        cout << "2 - Mostrar todo" << endl;
+        cout << "3 - modificar" << endl;
+        cout << "0 - Atras" << endl;
         cout << endl;
 
         cout << "Ingrese una opcion: ";
@@ -48,15 +47,19 @@ void Menu::menuTarjetas(){
             case 1:
                 _tarjetaManager.agregar();
                 break;
+
             case 2:
+                _tarjetaManager.listarTodo();
                 break;
+
+            case 3:
+                _tarjetaManager.modificar();
+                break;
+
             case 0:
-                cout << "Gracias por visitar esta app :)" << endl;
                 break;
         }
     }while(opc != 0);
-
-    system("pause");
 
 }
 

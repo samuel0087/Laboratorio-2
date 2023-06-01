@@ -10,9 +10,12 @@ class TarjetasManager
         TarjetasManager();
         void agregar();
         void modificar();
+        void listarTodo();
         void buscarPorNumeroTarjeta();
         void buscarPorDni();
         void baja();
+
+        void mostrar(Tarjeta tarjeta);
 
     private:
         TarjetasArchivo _archivoT;

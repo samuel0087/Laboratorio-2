@@ -128,16 +128,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Fecha.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="SistemaSube.cpp" />
     <ClCompile Include="Tarjeta.cpp" />
+    <ClCompile Include="TarjetasArchivo.cpp" />
+    <ClCompile Include="TarjetasManager.cpp" />
     <ClCompile Include="Viaje.cpp" />
     <ClCompile Include="ViajesArchivo.cpp" />
+    <ClCompile Include="ViajesManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fecha.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Tarjeta.h" />
+    <ClInclude Include="TarjetasArchivo.h" />
+    <ClInclude Include="TarjetasManager.h" />
     <ClInclude Include="Viaje.h" />
     <ClInclude Include="ViajesArchivo.h" />
+    <ClInclude Include="ViajesManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

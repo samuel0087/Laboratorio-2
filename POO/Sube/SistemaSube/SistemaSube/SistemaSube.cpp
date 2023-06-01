@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
-#include "ViajesArchivo.h"
+#include "Menu.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Menu menu;
+
+	menu.menuPrincipal();
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
