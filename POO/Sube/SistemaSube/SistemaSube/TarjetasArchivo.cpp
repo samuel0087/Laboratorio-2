@@ -1,9 +1,13 @@
-#pragma once
 #include "TarjetasArchivo.h"
 
 TarjetasArchivo::TarjetasArchivo()
 {
     strcpy(_ruta, "tarjetas.dat");
+}
+
+TarjetasArchivo::TarjetasArchivo(const char* ruta = "tarjetas.dat")
+{
+    strcpy(_ruta, ruta);
 }
 
 int TarjetasArchivo::guardar(Tarjeta reg){
@@ -30,6 +34,27 @@ int TarjetasArchivo::guardar(Tarjeta reg, int pos){
     fclose(archivoT);
 
     return result;
+}
+
+int TarjetasArchivo::buscarDni(int dni){
+    FILE* archivoT = fopen(_ruta, "rb");
+    Tarjeta reg;
+
+    if(archivoT == NULL){
+        reg.setNumeroTarjeta(-1);
+        return -1;
+    }
+
+    int cantRegistros = getCantidadRegistros();
+    for(int i = 0; i < cantRegistros; i++){
+        reg = leer(i);
+
+        if(reg.getDniUsuario() == dni){
+            return i;
+        }
+    }
+
+    return -2;
 }
 
 int TarjetasArchivo::buscar(int numTarjeta){
