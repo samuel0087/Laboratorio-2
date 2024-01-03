@@ -58,13 +58,7 @@ int TarjetasArchivo::buscarDni(int dni){
 }
 
 int TarjetasArchivo::buscar(int numTarjeta){
-    FILE* archivoT = fopen(_ruta, "rb");
     Tarjeta reg;
-
-    if(archivoT == NULL){
-        reg.setNumeroTarjeta(-1);
-        return -1;
-    }
 
     int cantRegistros = getCantidadRegistros();
     for(int i = 0; i < cantRegistros; i++){
@@ -75,7 +69,7 @@ int TarjetasArchivo::buscar(int numTarjeta){
         }
     }
 
-    return -2;
+    return -1;
 }
 
 Tarjeta TarjetasArchivo::leer(int pos){

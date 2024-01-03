@@ -1,5 +1,6 @@
 #pragma once
 #include "ArchivoTareas.h"
+#include <iomanip>
 
 class ManagerTarea
 {
@@ -11,6 +12,8 @@ public:
 	void eliminar();
 
 	void listar(Tarea tarea);
+	void listarCuadro(Tarea tarea);
+	void generarRenglon();
 
 private:
 	ArchivoTareas _archivoTareas = ArchivoTareas("tareas.dat");

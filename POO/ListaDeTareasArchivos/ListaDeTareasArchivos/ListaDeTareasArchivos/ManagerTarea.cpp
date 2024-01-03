@@ -60,16 +60,17 @@ void ManagerTarea::cargar() {
 }
 
 void ManagerTarea::listarTodo() {
-	cout << "-------------------------------" << endl;
+	generarRenglon();
 	cout << "        Lista de tareas        " << endl;
-	cout << "-------------------------------" << endl;
+	generarRenglon();
 	int cantRegistros = _archivoTareas.getCantidadRegistros();
+
+	generarRenglon();
 
 	for (int i = 0; i < cantRegistros; i++) {
 		Tarea reg = _archivoTareas.leer(i);
 		if (!reg.getEliminado()) {
-			listar(reg);
-			cout << endl;
+			listarCuadro(reg);
 		}
 	}
 }
@@ -139,6 +140,16 @@ void ManagerTarea::listar(Tarea tarea) {
 	cout << "Estado      :" << tarea.getEstado() << endl;
 }
 
+void ManagerTarea::listarCuadro(Tarea tarea) {
+	cout << left;
+	cout << setw(3) << "|Id: " << setw(3) <<tarea.getId()  << "|";
+	cout << setw(13) << "Descripcion:" << setw(31) << tarea.getDescripcion() << "|";
+	cout << setw(12) << "Dificultad:" << setw(6) << tarea.getDificultad() << "|";
+	cout << setw(14) << "Fecha limite:" << setw(11) << tarea.getFechaLimite().toString() << "|";
+	cout << setw(8) << "Estado:" << setw(11) << tarea.getEstado() << "|" << endl;
+	generarRenglon();
+}
+
 
 bool ManagerTarea::existeId(int id) {
 	return _archivoTareas.buscarTarea(id) >= 0;
@@ -146,4 +157,12 @@ bool ManagerTarea::existeId(int id) {
 
 int ManagerTarea::generarId() {
 	return _archivoTareas.getCantidadRegistros() + 1;
+}
+
+void ManagerTarea::generarRenglon() {
+	cout << "+";
+	for (int i = 0; i < 117; i++) {
+		cout << "-";
+	}
+	cout << "+" << endl;
 }
